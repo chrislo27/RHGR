@@ -4,10 +4,9 @@ import io.github.chrislo27.rhgr.registry.Minigame
 import javafx.geometry.Orientation
 import javafx.geometry.Pos
 import javafx.scene.control.*
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.Priority
-import javafx.scene.layout.VBox
+import javafx.scene.image.ImageView
+import javafx.scene.layout.*
+import javafx.util.Callback
 
 
 class MainPane : BorderPane() {
@@ -23,6 +22,9 @@ class MainPane : BorderPane() {
     val mainList: ListView<Minigame> = ListView()
     val selectedList: ListView<Minigame> = ListView()
     val resultList: ListView<Minigame> = ListView()
+    val mainListBox: VBox = VBox(SPACING)
+    val selectedListBox: VBox = VBox(SPACING)
+    val resultListBox: VBox = VBox(SPACING)
     val addRemoveBox: VBox = VBox(SPACING)
     val randomizeBox: VBox = VBox(SPACING)
 
@@ -55,12 +57,45 @@ class MainPane : BorderPane() {
             maxWidth = Double.MAX_VALUE
             return this
         }
-
         addRemoveBox.children.addAll(addButton.settings(), removeButton.settings(),
                 Separator(Orientation.HORIZONTAL), addAllButton.settings(), removeAllButton.settings())
         randomizeBox.children += randomizeButton.settings()
 
-        centreBox.children.addAll(mainList, addRemoveBox, selectedList, randomizeBox, resultList)
+        fun ListView<Minigame>.settings(): ListView<Minigame> {
+            maxHeight = Double.MAX_VALUE
+            prefHeight = Region.USE_COMPUTED_SIZE
+            VBox.setVgrow(this, Priority.ALWAYS)
+            cellFactory = Callback<ListView<Minigame>, ListCell<Minigame>> {
+                MinigameCell()
+            }
+            return this
+        }
+
+        fun makeLabel(text: String): Label {
+            return Label(text).apply {
+                maxWidth = Double.MAX_VALUE
+                alignment = Pos.CENTER
+            }
+        }
+
+        mainListBox.children.addAll(makeLabel("Filtered Minigames"), mainList.settings())
+        selectedListBox.children.addAll(makeLabel("Selected Minigames"), selectedList.settings())
+        resultListBox.children.addAll(makeLabel("Result"), resultList.settings())
+
+        centreBox.children.addAll(mainListBox, addRemoveBox, selectedListBox, randomizeBox, resultListBox)
+    }
+
+    class MinigameCell : ListCell<Minigame>() {
+        override fun updateItem(item: Minigame?, empty: Boolean) {
+            super.updateItem(item, empty)
+            if (empty || item == null) {
+                graphic = null
+                text = null
+            } else {
+                text = item.name
+                graphic = ImageView(item.icon)
+            }
+        }
     }
 
 }

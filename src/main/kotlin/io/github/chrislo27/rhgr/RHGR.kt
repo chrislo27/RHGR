@@ -4,6 +4,7 @@ import com.eclipsesource.json.Json
 import io.github.chrislo27.rhgr.util.Logger
 import io.github.chrislo27.rhgr.util.Version
 import javafx.application.Application
+import javafx.scene.Scene
 import javafx.stage.Stage
 import jodd.http.HttpRequest
 import kotlinx.coroutines.experimental.CommonPool
@@ -26,15 +27,20 @@ class RHGR : Application() {
 
     private lateinit var primaryStage: Stage
     var githubVersion: Version = Version.RETRIEVING
+        private set
 
     override fun start(primaryStage: Stage) {
         LOGGER.info("Starting $TITLE $VERSION")
 
         this.primaryStage = primaryStage
         primaryStage.title = "$TITLE $VERSION"
+        // TODO set icon
 
+        // Finally, show the stage
+        primaryStage.scene = Scene(MainPane(), 1000.0, 600.0)
         primaryStage.show()
 
+        // Get GitHub version
         launch(CommonPool) {
             try {
                 val nano = System.nanoTime()
@@ -54,6 +60,7 @@ class RHGR : Application() {
 
     override fun stop() {
         super.stop()
+        LOGGER.info("Exiting program")
         System.exit(0)
     }
 }

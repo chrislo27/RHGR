@@ -6,5 +6,7 @@ import java.util.*
 /**
  * The minigame. Contains info such as its name, the installments it is in, and other metadata.
  */
-data class Minigame(val name: String, val installments: EnumSet<Installment>) {
+data class Minigame(val id: String, val name: String,
+                    val installments: EnumSet<Installment>, val inputTypes: EnumSet<InputType>,
+                    val sideGame: Boolean = false) {
 }

@@ -8,6 +8,7 @@ import javafx.scene.Scene
 import javafx.stage.Stage
 import jodd.http.HttpRequest
 import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 
 class RHGR : Application() {
@@ -15,7 +16,7 @@ class RHGR : Application() {
     companion object {
 
         val LOGGER: Logger = Logger()
-        val VERSION: Version = Version(1, 0, 0, "DEVELOPMENT")
+        val VERSION: Version = Version(1, 0, 0, "RC1")
         const val TITLE = "Rhythm Heaven Game Randomizer"
         const val RELEASE_API_URL = "https://api.github.com/repos/chrislo27/RHGR/releases/latest"
         const val GITHUB = "https://github.com/chrislo27/RHGR"
@@ -63,6 +64,10 @@ class RHGR : Application() {
     override fun stop() {
         super.stop()
         LOGGER.info("Exiting program")
-        System.exit(0)
+        launch(CommonPool) {
+            // in case of errors
+            delay(500)
+            System.exit(0)
+        }
     }
 }

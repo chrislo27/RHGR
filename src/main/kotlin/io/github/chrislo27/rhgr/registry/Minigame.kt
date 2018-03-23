@@ -12,7 +12,7 @@ data class Minigame(val id: String, val name: String,
                     val sideGame: Boolean = false) : Comparable<Minigame> {
 
     val icon: Image by lazy {
-        Image("file:src/main/resources/games/$id.png")
+        Image("/games/$id.png")
     }
 
     override fun compareTo(other: Minigame): Int {

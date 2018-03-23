@@ -14,3 +14,9 @@ Get a download from the [Releases tab](https://github.com/chrislo27/RHGR/release
 Simply double-click the jar file. Or using Terminal, run `java -jar RHGR.jar`.
 
 ![Screenshot](https://i.imgur.com/w0hz2JA.png)
+
+## Contributing / Bug Reports
+I appreciate all bug reports, ideas, suggestions, and pull requests.
+Please open an issue, taking
+care to fill out the [issue template](.github/ISSUE_TEMPLATE.md), or
+the [pull request template](.github/PULL_REQUEST_TEMPLATE.md) where necessary.

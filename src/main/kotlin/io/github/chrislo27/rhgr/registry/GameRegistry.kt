@@ -111,7 +111,7 @@ object GameRegistry {
         Minigame("packingPests", "Packing Pests", EnumSet.of(FEVER, MEGAMIX), EnumSet.of(CUE)).add()
         Minigame("ringside", "Ringside", EnumSet.of(FEVER, MEGAMIX), EnumSet.of(CUE)).add()
         Minigame("samuraiSlice", "Samurai Slice (Fever)", EnumSet.of(FEVER, MEGAMIX), EnumSet.of(CUE)).add()
-        Minigame("screwbotFactory", "", EnumSet.of(FEVER, MEGAMIX), EnumSet.of(CUE)).add()
+        Minigame("screwbotFactory", "Screwbot Factory", EnumSet.of(FEVER, MEGAMIX), EnumSet.of(CUE)).add()
         Minigame("seeSaw", "See-Saw", EnumSet.of(FEVER, MEGAMIX), EnumSet.of(CUE)).add()
         Minigame("shrimpShuffle", "Shrimp Shuffle", EnumSet.of(FEVER), EnumSet.of(KEEP_THE_BEAT, CUE)).add()
         Minigame("tambourine", "Tambourine", EnumSet.of(FEVER), EnumSet.of(CUE)).add()

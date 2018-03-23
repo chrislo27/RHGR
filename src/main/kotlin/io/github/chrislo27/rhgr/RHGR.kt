@@ -18,6 +18,9 @@ class RHGR : Application() {
         val VERSION: Version = Version(1, 0, 0, "DEVELOPMENT")
         const val TITLE = "Rhythm Heaven Game Randomizer"
         const val RELEASE_API_URL = "https://api.github.com/repos/chrislo27/RHGR/releases/latest"
+        const val GITHUB = "https://github.com/chrislo27/RHGR"
+        var githubVersion: Version = Version.RETRIEVING
+            private set
 
         @JvmStatic
         fun main(args: Array<String>) {
@@ -26,8 +29,6 @@ class RHGR : Application() {
     }
 
     private lateinit var primaryStage: Stage
-    var githubVersion: Version = Version.RETRIEVING
-        private set
 
     override fun start(primaryStage: Stage) {
         LOGGER.info("Starting $TITLE $VERSION")
@@ -37,7 +38,7 @@ class RHGR : Application() {
         // TODO set icon
 
         // Finally, show the stage
-        primaryStage.scene = Scene(MainPane(), 1000.0, 600.0)
+        primaryStage.scene = Scene(MainPane(this), 1280.0, 720.0)
         primaryStage.show()
 
         // Get GitHub version

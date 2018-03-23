@@ -9,10 +9,13 @@ import java.util.*
  */
 data class Minigame(val id: String, val name: String,
                     val installments: EnumSet<Installment>, val inputTypes: EnumSet<InputType>,
-                    val sideGame: Boolean = false) {
+                    val sideGame: Boolean = false) : Comparable<Minigame> {
 
     val icon: Image by lazy {
-        Image("file:resources/games/$id.png")
+        Image("file:src/main/resources/games/$id.png")
     }
 
+    override fun compareTo(other: Minigame): Int {
+        return name.compareTo(other.name)
+    }
 }

@@ -5,6 +5,7 @@ import io.github.chrislo27.rhgr.util.Logger
 import io.github.chrislo27.rhgr.util.Version
 import javafx.application.Application
 import javafx.scene.Scene
+import javafx.scene.image.Image
 import javafx.stage.Stage
 import jodd.http.HttpRequest
 import kotlinx.coroutines.experimental.CommonPool
@@ -37,7 +38,7 @@ class RHGR : Application() {
 
         this.primaryStage = primaryStage
         primaryStage.title = "$TITLE $VERSION"
-        // TODO set icon
+        primaryStage.icons.addAll(Image("/icon/16.png"), Image("/icon/24.png"), Image("/icon/32.png"))
 
         // Finally, show the stage
         primaryStage.scene = Scene(MainPane(this), 1280.0, 720.0)

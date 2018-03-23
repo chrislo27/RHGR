@@ -16,6 +16,8 @@ import javafx.scene.control.*
 import javafx.scene.control.cell.CheckBoxListCell
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
+import javafx.scene.text.Text
+import javafx.scene.text.TextFlow
 import javafx.util.Callback
 import javafx.util.StringConverter
 
@@ -73,15 +75,27 @@ class MainPane(val application: Application) : BorderPane() {
                     alert.title = "About ${RHGR.TITLE}"
                     alert.headerText = alert.title
 
-                    alert.dialogPane.content = FlowPane().apply {
-                        children += Label("${RHGR.TITLE}\n${RHGR.VERSION}${if (RHGR.githubVersion < RHGR.VERSION) " (newest version is ${RHGR.githubVersion})" else ""}\nMade by chrislo27 under the GNU GPL-3.0 license")
-                        children += Hyperlink(RHGR.GITHUB).apply {
-                            setOnAction {
-                                alert.close()
-                                HostServicesFactory.getInstance(application).showDocument(RHGR.GITHUB)
+                    alert.dialogPane.content = TextFlow(
+                            Text("${RHGR.TITLE}\n${RHGR.VERSION}${if (RHGR.githubVersion < RHGR.VERSION) " (newest version is ${RHGR.githubVersion})" else ""}\n"),
+                            Text("\nMade by chrislo27 under the"),
+                            Hyperlink("GNU GPL-3.0 license").apply {
+                                setOnAction {
+                                    HostServicesFactory.getInstance(application).showDocument("https://github.com/chrislo27/RHGR/blob/master/LICENSE.txt")
+                                }
+                            },
+                            Text("\nIcons used from the"),
+                            Hyperlink("Rhythm Heaven Remix Editor").apply {
+                                setOnAction {
+                                    HostServicesFactory.getInstance(application).showDocument("https://github.com/chrislo27/RhythmHeavenRemixEditor")
+                                }
+                            },
+                            Text("\n"),
+                            Hyperlink(RHGR.GITHUB).apply {
+                                setOnAction {
+                                    HostServicesFactory.getInstance(application).showDocument(RHGR.GITHUB)
+                                }
                             }
-                        }
-                    }
+                    )
 
                     alert.showAndWait()
                 }

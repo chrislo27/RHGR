@@ -19,6 +19,7 @@ class RHGR : Application() {
         const val TITLE = "Rhythm Heaven Game Randomizer"
         const val RELEASE_API_URL = "https://api.github.com/repos/chrislo27/RHGR/releases/latest"
         const val GITHUB = "https://github.com/chrislo27/RHGR"
+        const val LATEST_RELEASE = "https://github.com/chrislo27/RHGR/releases/latest"
         var githubVersion: Version = Version.RETRIEVING
             private set
 

@@ -8,7 +8,7 @@ setting restrictions for yourself when [making a custom remix](https://github.co
 Get a download from the [Releases tab](https://github.com/chrislo27/RHGR/releases).<br>
 
 ## Requirements
-* Java 8 or higher
+* Java 8, 9, or 10
 
 ## Launching
 Simply double-click the jar file. Or using Terminal, run `java -jar RHGR.jar`.

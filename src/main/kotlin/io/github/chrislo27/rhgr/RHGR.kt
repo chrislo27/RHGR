@@ -17,7 +17,7 @@ class RHGR : Application() {
     companion object {
 
         val LOGGER: Logger = Logger()
-        val VERSION: Version = Version(1, 1, 0, "")
+        val VERSION: Version = Version(1, 0, 1, "")
         const val TITLE = "Rhythm Heaven Game Randomizer"
         const val RELEASE_API_URL = "https://api.github.com/repos/chrislo27/RHGR/releases/latest"
         const val GITHUB = "https://github.com/chrislo27/RHGR"

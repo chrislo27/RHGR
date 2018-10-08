@@ -49,7 +49,7 @@ class MainPane(val application: Application) : BorderPane() {
     val addAllButton = Button("Add All >>")
     val removeAllButton = Button("<< Remove All")
     val randomizeButton = Button("Randomize!")
-    val randomizeSpinner = Spinner<Int>(1, GameRegistry.backingMap.size, 1)
+    val randomizeSpinner = Spinner<Int>(1, GameRegistry.backingMap.size, 4)
     val installmentListView: ListView<Installment> = ListView()
     val selectedInstallments: MutableSet<Installment> = mutableSetOf(*Installment.VALUES.toTypedArray())
     val inputTypeListView: ListView<InputType> = ListView()
@@ -76,7 +76,7 @@ class MainPane(val application: Application) : BorderPane() {
                     alert.headerText = alert.title
 
                     alert.dialogPane.content = TextFlow(
-                            Text("${RHGR.TITLE}\n${RHGR.VERSION}${if (RHGR.githubVersion < RHGR.VERSION) " (newest version is ${RHGR.githubVersion})" else ""}\n"),
+                            Text("${RHGR.TITLE}\n${RHGR.VERSION}${if (RHGR.githubVersion < RHGR.VERSION) " (latest public version is ${RHGR.githubVersion})" else ""}\n"),
                             Text("\nMade by chrislo27 under the"),
                             Hyperlink("GNU GPL-3.0 license").apply {
                                 setOnAction {
@@ -161,14 +161,14 @@ class MainPane(val application: Application) : BorderPane() {
                 }
                 cellFactory = CheckBoxListCell.forListView({ installment ->
                     SimpleBooleanProperty(true).apply {
-                        addListener({ _, _, new ->
+                        addListener { _, _, new ->
                             if (new) {
                                 selectedInstallments.add(installment)
                             } else {
                                 selectedInstallments.remove(installment)
                             }
                             updateMainList()
-                        })
+                        }
                     }
                 }, object : StringConverter<Installment>() {
                     override fun toString(obj: Installment): String {
@@ -199,14 +199,14 @@ class MainPane(val application: Application) : BorderPane() {
                 }
                 cellFactory = CheckBoxListCell.forListView({ inputType ->
                     SimpleBooleanProperty(true).apply {
-                        addListener({ _, _, new ->
+                        addListener { _, _, new ->
                             if (new) {
                                 selectedInputTypes.add(inputType)
                             } else {
                                 selectedInputTypes.remove(inputType)
                             }
                             updateMainList()
-                        })
+                        }
                     }
                 }, object : StringConverter<InputType>() {
                     override fun toString(obj: InputType): String {
@@ -265,14 +265,14 @@ class MainPane(val application: Application) : BorderPane() {
         mainList.clear()
         mainList.addAll(GameRegistry.backingMap.values
                 .filter { it !in selectedList }
-                .filter {
-                    it.installments.any { it in selectedInstallments }
+                .filter { minigame ->
+                    minigame.installments.any { it in selectedInstallments }
                 }
-                .filter {
-                    !it.sideGame || (it.sideGame && sideGamesCheckbox.isSelected)
+                .filter { minigame ->
+                    !minigame.sideGame || (minigame.sideGame && sideGamesCheckbox.isSelected)
                 }
-                .filter {
-                    it.inputTypes.any { it in selectedInputTypes }
+                .filter { minigame ->
+                    minigame.inputTypes.any { it in selectedInputTypes }
                 })
     }
 

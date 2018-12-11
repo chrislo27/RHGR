@@ -1,4 +1,4 @@
-<img align="right" src="src/main/resources/icon/128.png" height="128" width="128">
+<img align="right" src="src/main/resources/icon/256.png" height="256" width="256">
 
 # Rhythm Heaven Game Randomizer
 This extremely simple tool allows you to pick and choose any Rhythm Heaven
